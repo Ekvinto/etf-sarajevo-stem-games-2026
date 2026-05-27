@@ -1,0 +1,25 @@
+# Caddy config for the bundled reverse proxy (docker compose --profile with-caddy).
+# Use this ONLY if nothing else on the server is already serving stem.steleks.ba.
+# Caddy obtains and renews a Let's Encrypt TLS certificate automatically.
+#
+# The detector app is path-agnostic: `handle_path` strips the /mathematics-2026
+# prefix before proxying, so the container sees plain "/" and "/api/score".
+
+stem.steleks.ba {
+	# Add the trailing slash so relative URLs resolve correctly.
+	redir /mathematics-2026 /mathematics-2026/ permanent
+
+	handle_path /mathematics-2026/* {
+		reverse_proxy web:8000
+	}
+
+	# Anything else on this domain: not handled here.
+	handle {
+		respond "Not found" 404
+	}
+
+	encode gzip
+	log {
+		output stdout
+	}
+}

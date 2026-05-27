@@ -1,0 +1,45 @@
+# Additional AI-phrase regex patterns. One per line.
+# Lines starting with # are comments. These supplement the built-in list in
+# src/features/ai_lexical.py — built-ins already cover "delve into", "tapestry of",
+# "in today's fast-paced world", etc. Add domain-specific tells here.
+\bin summary\b
+\bto sum up\b
+\bnotably\b
+\bcertainly\b
+\bindeed\b
+\bessentially\b
+\bcrucially\b
+\bsignificantly\b
+\bremarkably\b
+\bvitally\b
+\bcoupled with\b
+\bcombined with\b
+\bin light of\b
+\bgiven the (above|fact|circumstances)\b
+\bas (a result|such)\b
+\bconsequently\b
+\bthat said,\b
+\bhowever, it'?s (important|worth) (to note|noting)\b
+\bdive deeper\b
+\bdeep dive\b
+\bunpack(ed|ing|s)?\b
+\bsynerg(y|ies|istic|ize)\b
+\bgame[- ]chang(er|ing)\b
+\brevolution(ize|ary|ising|izing)\b
+\bnext[- ]level\b
+\bcutting[- ]edge\b
+\bstate[- ]of[- ]the[- ]art\b
+\bbest[- ]in[- ]class\b
+\bworld[- ]class\b
+\bground[- ]breaking\b
+\bdisrupt(ion|ive|ing)\b
+\bempower(ment|ed|ing)?\b
+\benable(s|d|ment)?\b
+\bfacilitate\b
+\bstreamline\b
+\boptim(ize|ization|al)\b
+\benhanc(e|ed|ing|ement)\b
+\bbolster(ed|ing|s)?\b
+\binvaluable\b
+\bunparalleled\b
+\bunmatched\b

@@ -1,0 +1,30 @@
+# Keep the build context (and image) lean.
+
+# Version control / IDE / virtualenv
+.git
+.gitignore
+.idea
+.venv
+venv
+**/__pycache__
+*.pyc
+*.pyo
+
+# Big training corpora — NOT needed for inference. The detector only needs
+# the lexicons (data/*.txt, data/*.csv) and the template corpus.
+data/*.jsonl
+!data/ragebait_templates.jsonl
+data/*.parquet
+
+# Plots, notebook, report, evaluation artifacts — not used by the web server.
+images
+ragebait_train_colab.ipynb
+*.pdf
+
+# Local secrets
+.env
+
+# Deployment files not needed inside the app image
+Caddyfile
+docker-compose.yml
+DEPLOYMENT.md

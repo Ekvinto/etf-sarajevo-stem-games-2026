@@ -1,0 +1,65 @@
+# ============================================================
+# .gitignore — ETF Sarajevo STEM Games 2026
+# ============================================================
+# This repository is an archive: PDFs, reports, presentations,
+# task images, source code and grading test data are all CONTENT
+# and are intentionally NOT ignored. Only build artifacts,
+# caches, environments and IDE/OS junk are excluded below.
+
+# ----- Python -----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# ----- C / C++ (Technology Day 1 solutions) -----
+*.o
+*.obj
+*.exe
+*.exe.stackdump
+a.out
+# NOTE: "*.out" is deliberately NOT ignored — competition test
+# data commonly uses the .out extension for expected outputs.
+
+# ----- IDE / Editor -----
+.idea/
+.vscode/
+*.swp
+*~
+
+# ----- OS junk -----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ----- Logs / temp -----
+*.log
+*.tmp
+
+# ----- Optional: large datasets & model weights -----
+# Uncomment if these grow large; prefer Git LFS or an external
+# link so the repo stays lightweight to clone.
+# data/
+# datasets/
+# *.csv
+# *.h5
+# *.pt
+# *.ckpt
+# *.pkl
+# *.npy
+# *.npz

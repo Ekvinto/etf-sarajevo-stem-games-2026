@@ -1,0 +1,87 @@
+# Extra scam / financial / urgency lexicon. One term per line; '#' for comments.
+# Loaded by src/features/topic_shift.py on top of the built-in core list.
+escrow
+administrator
+release
+clearance
+processing
+expedite
+intermediary
+beneficiary
+inheritance
+diplomat
+package
+delivery
+shipment
+recipient
+verification
+authentication
+notarize
+courier
+freight
+demurrage
+remittance
+charity
+donation
+contribution
+medication
+medicine
+prescription
+treatment
+operation
+discharge
+clinic
+attorney
+solicitor
+barrister
+estate
+trustee
+testator
+swift code
+wire transfer
+moneygram
+ria
+remitly
+worldremit
+zelle
+venmo
+cashapp
+paypal
+gift card
+itunes
+google play
+playstation
+roblox
+voucher code
+activation
+pin
+otp
+sms code
+authenticator
+google authenticator
+binance
+coinbase
+metamask
+trust wallet
+ledger
+trezor
+mining
+staking
+yield
+apy
+return on investment
+roi
+guaranteed
+secure platform
+licensed broker
+sec registered
+fdic insured
+asap
+right now
+immediately
+before tonight
+last chance
+final notice
+limited offer
+window closing
+deadline approaching

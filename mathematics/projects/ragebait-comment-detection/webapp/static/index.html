@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Ragebait Comment Detector</title>
+<link rel="icon" href="data:,">
+<style>
+  :root {
+    --bg: #f4f5f8;
+    --card: #ffffff;
+    --ink: #1c2230;
+    --muted: #6b7280;
+    --line: #e3e6ec;
+    --accent: #4f46e5;
+    --accent-dark: #3730a3;
+    --ok: #15a34a;
+    --warn: #d97706;
+    --danger: #dc2626;
+    --shadow: 0 1px 3px rgba(20,25,40,.06), 0 8px 24px rgba(20,25,40,.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                 Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 64px; }
+  header { margin-bottom: 24px; }
+  h1 { font-size: 1.5rem; font-weight: 700; letter-spacing: -.01em; }
+  .sub { color: var(--muted); font-size: .94rem; margin-top: 4px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; box-shadow: var(--shadow);
+    padding: 20px; margin-bottom: 18px;
+  }
+  label { display: block; font-weight: 600; font-size: .86rem; margin-bottom: 6px; }
+  textarea, input[type=text] {
+    width: 100%; font: inherit; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 9px;
+    padding: 11px 12px; background: #fcfcfd; resize: vertical;
+  }
+  textarea { min-height: 130px; }
+  textarea:focus, input:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(79,70,229,.12);
+  }
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+         margin-top: 14px; }
+  button {
+    font: inherit; font-weight: 600; cursor: pointer;
+    border: none; border-radius: 9px; padding: 11px 20px;
+    background: var(--accent); color: #fff; transition: background .15s;
+  }
+  button:hover:not(:disabled) { background: var(--accent-dark); }
+  button:disabled { opacity: .6; cursor: progress; }
+  .examples { font-size: .85rem; color: var(--muted); }
+  .examples a {
+    color: var(--accent); cursor: pointer; text-decoration: none;
+    border-bottom: 1px dashed currentColor; margin-left: 8px;
+  }
+  .meta-input { margin-top: 14px; }
+  .hint { font-size: .8rem; color: var(--muted); margin-top: 6px; }
+
+  /* ---- results ---- */
+  #result { display: none; }
+  .verdict {
+    border-radius: 11px; padding: 14px 16px; font-weight: 700;
+    font-size: 1.05rem; margin-bottom: 18px; border: 1px solid;
+  }
+  .verdict.ok     { background: #ecfdf3; color: var(--ok);     border-color: #b7ebc6; }
+  .verdict.warn   { background: #fffaeb; color: var(--warn);   border-color: #fde6ac; }
+  .verdict.danger { background: #fef2f2; color: var(--danger); border-color: #f6c9c9; }
+
+  .meters { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 540px) { .meters { grid-template-columns: 1fr; } }
+  .meter-label { font-size: .82rem; font-weight: 600; color: var(--muted);
+                 display: flex; justify-content: space-between; }
+  .meter-pct { font-size: 1.35rem; font-weight: 700; color: var(--ink); }
+  .bar { height: 9px; border-radius: 6px; background: #eceef3; margin-top: 7px;
+         overflow: hidden; }
+  .bar > span { display: block; height: 100%; border-radius: 6px;
+                transition: width .5s ease; }
+
+  .joint { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line);
+           font-size: .92rem; color: var(--muted); }
+  .joint b { color: var(--ink); font-size: 1.05rem; }
+
+  h3 { font-size: .95rem; margin: 20px 0 8px; }
+  ul.flags { list-style: none; }
+  ul.flags li {
+    background: #fbfbfd; border: 1px solid var(--line); border-left: 3px solid var(--warn);
+    border-radius: 7px; padding: 8px 11px; margin-bottom: 7px; font-size: .9rem;
+  }
+  .no-flags { color: var(--muted); font-size: .9rem; font-style: italic; }
+
+  details { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; }
+  summary { cursor: pointer; font-weight: 600; font-size: .9rem; color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: .85rem; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; }
+  td.val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  td.code { color: var(--muted); font-family: ui-monospace, Menlo, Consolas, monospace; }
+  .grp { background: #f7f7fa; font-weight: 700; font-size: .8rem;
+         text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+
+  .elapsed { font-size: .78rem; color: var(--muted); margin-top: 14px; text-align: right; }
+  .err {
+    display: none; background: #fef2f2; color: var(--danger);
+    border: 1px solid #f6c9c9; border-radius: 9px; padding: 11px 13px;
+    font-size: .9rem; margin-bottom: 18px;
+  }
+  footer { color: var(--muted); font-size: .8rem; margin-top: 26px; line-height: 1.6; }
+  .spinner {
+    display: inline-block; width: 14px; height: 14px; vertical-align: -2px;
+    border: 2px solid rgba(255,255,255,.4); border-top-color: #fff;
+    border-radius: 50%; animation: spin .7s linear infinite; margin-right: 7px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>AI-Ragebait Comment Detector</h1>
+    <p class="sub">
+      A two-stage mathematical detector. It estimates whether a comment was
+      <strong>AI-generated</strong> and whether it is <strong>ragebait</strong>
+      &mdash; engineered to maximize outrage while carrying little information.
+    </p>
+  </header>
+
+  <div class="card">
+    <label for="text">Comment text</label>
+    <textarea id="text" placeholder="Paste a news-site or social-media comment here..."></textarea>
+    <div class="meta-input">
+      <label for="topic">Article / parent-post title <span style="font-weight:400;color:var(--muted)">(optional, improves the topic-conditional feature)</span></label>
+      <input type="text" id="topic" placeholder="e.g. Parliament debates pension reform">
+    </div>
+    <div class="row">
+      <button id="go" onclick="analyze()">Analyze comment</button>
+      <span class="examples">Try an example:
+        <a onclick="loadExample('ai_rb')">AI ragebait</a>
+        <a onclick="loadExample('human_sub')">human / substantive</a>
+        <a onclick="loadExample('human_rb')">human ragebait</a>
+      </span>
+    </div>
+    <p class="hint">Scoring runs three language models and takes a few seconds.</p>
+  </div>
+
+  <div class="err" id="err"></div>
+
+  <div class="card" id="result">
+    <div class="verdict" id="verdict"></div>
+
+    <div class="meters">
+      <div>
+        <div class="meter-label"><span>AI-generated</span></div>
+        <div class="meter-pct" id="ai-pct">&ndash;</div>
+        <div class="bar"><span id="ai-bar"></span></div>
+      </div>
+      <div>
+        <div class="meter-label"><span>Ragebait</span></div>
+        <div class="meter-pct" id="rb-pct">&ndash;</div>
+        <div class="bar"><span id="rb-bar"></span></div>
+      </div>
+    </div>
+
+    <div class="joint">
+      Joint AI-ragebait risk (product of the two probabilities):
+      <b id="joint-pct">&ndash;</b>
+    </div>
+
+    <h3>Red flags</h3>
+    <ul class="flags" id="flags"></ul>
+
+    <details>
+      <summary>Show all feature values</summary>
+      <table id="feat-table"><tbody></tbody></table>
+      <p class="hint" style="margin-top:8px">
+        &psi; features feed the AI-detection stage; &chi; features feed the
+        ragebait stage. Missing values are imputed by the model.
+      </p>
+    </details>
+
+    <div class="elapsed" id="elapsed"></div>
+  </div>
+
+  <footer>
+    Built for STEM Games 2026 &mdash; Mathematics arena &times; Erste.
+    This tool reports calibrated probabilities and interpretable indicators;
+    it does not make removal decisions. Scores are most reliable on English-language
+    news and social-media comments and should be read as guidance, not proof.
+  </footer>
+
+</div>
+
+<script>
+// The page may be served under a subpath (e.g. /mathematics-2026/). Derive the
+// API base from the current location so the same file works at any path.
+const API_BASE = window.location.pathname
+  .replace(/\/index\.html$/, "")
+  .replace(/\/+$/, "");
+const SCORE_URL = API_BASE + "/api/score";
+
+const EXAMPLES = {
+  ai_rb: {
+    text: "Moreover, it's worth noting that the establishment has consistently " +
+          "failed to deliver on their promises to working families. In today's " +
+          "increasingly polarized landscape, the multifaceted nature of this " +
+          "betrayal underscores a profound disconnect between policymakers and " +
+          "the people they purport to serve. How is anyone still surprised by this? Wake up.",
+    topic: "Parliament debates pension reform"
+  },
+  human_sub: {
+    text: "I read the actual bill text. Section 4 raises the contribution ceiling " +
+          "by about 2% starting next year, which for me works out to roughly 15 " +
+          "euros a month. Not thrilled, but it's smaller than the headlines made it sound.",
+    topic: "Parliament debates pension reform"
+  },
+  human_rb: {
+    text: "lol of course they did this AGAIN, every single time these people get " +
+          "near a budget they find a new way to rob us. absolute clowns, the whole lot.",
+    topic: "Parliament debates pension reform"
+  }
+};
+
+function loadExample(key) {
+  const ex = EXAMPLES[key];
+  document.getElementById("text").value = ex.text;
+  document.getElementById("topic").value = ex.topic;
+}
+
+function pctColor(p) {
+  if (p >= 0.5) return "var(--danger)";
+  if (p >= 0.25) return "var(--warn)";
+  return "var(--ok)";
+}
+
+function showError(msg) {
+  const e = document.getElementById("err");
+  e.textContent = msg;
+  e.style.display = "block";
+  document.getElementById("result").style.display = "none";
+}
+
+async function analyze() {
+  const text = document.getElementById("text").value.trim();
+  const topic = document.getElementById("topic").value.trim();
+  const btn = document.getElementById("go");
+  document.getElementById("err").style.display = "none";
+
+  if (!text) { showError("Please enter a comment to analyze."); return; }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Analyzing...';
+
+  try {
+    const resp = await fetch(SCORE_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text: text, parent_topic: topic || null })
+    });
+    const data = await resp.json();
+    if (!resp.ok) {
+      showError(data.error || ("Server error (" + resp.status + ")."));
+      return;
+    }
+    renderResult(data);
+  } catch (e) {
+    showError("Could not reach the server. Please try again in a moment.");
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Analyze comment";
+  }
+}
+
+function renderResult(d) {
+  const v = document.getElementById("verdict");
+  v.textContent = d.verdict;
+  v.className = "verdict " + d.verdict_kind;
+
+  const aiPct = Math.round(d.p_ai * 100);
+  const rbPct = Math.round(d.p_ragebait * 100);
+  const jtPct = Math.round(d.p_joint * 100);
+
+  document.getElementById("ai-pct").textContent = aiPct + "%";
+  document.getElementById("rb-pct").textContent = rbPct + "%";
+  document.getElementById("joint-pct").textContent = jtPct + "%";
+
+  const aiBar = document.getElementById("ai-bar");
+  const rbBar = document.getElementById("rb-bar");
+  aiBar.style.width = aiPct + "%";
+  rbBar.style.width = rbPct + "%";
+  aiBar.style.background = pctColor(d.p_ai);
+  rbBar.style.background = pctColor(d.p_ragebait);
+
+  const flags = document.getElementById("flags");
+  flags.innerHTML = "";
+  if (d.red_flags && d.red_flags.length) {
+    d.red_flags.forEach(f => {
+      const li = document.createElement("li");
+      li.textContent = f;
+      flags.appendChild(li);
+    });
+  } else {
+    const li = document.createElement("li");
+    li.className = "no-flags";
+    li.style.borderLeftColor = "var(--ok)";
+    li.textContent = "No individual indicators crossed their alert thresholds.";
+    flags.appendChild(li);
+  }
+
+  const tbody = document.querySelector("#feat-table tbody");
+  tbody.innerHTML = "";
+  const addGroup = (title, rows) => {
+    const gr = document.createElement("tr");
+    gr.innerHTML = '<td class="grp" colspan="3">' + title + "</td>";
+    tbody.appendChild(gr);
+    rows.forEach(r => {
+      const tr = document.createElement("tr");
+      const val = (r.value === null || r.value === undefined)
+        ? '<span style="color:var(--muted)">imputed</span>'
+        : r.value.toFixed(3);
+      tr.innerHTML = '<td class="code">' + r.name + "</td><td>" + r.label +
+                     '</td><td class="val">' + val + "</td>";
+      tbody.appendChild(tr);
+    });
+  };
+  addGroup("AI-detection features (\u03C8)", d.features.ai);
+  addGroup("Ragebait features (\u03C7)", d.features.ragebait);
+
+  document.getElementById("elapsed").textContent =
+    "Scored in " + (d.elapsed_ms / 1000).toFixed(1) + " s";
+  document.getElementById("result").style.display = "block";
+  document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+// Allow Ctrl/Cmd+Enter to submit from the textarea.
+document.getElementById("text").addEventListener("keydown", e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === "Enter") analyze();
+});
+</script>
+</body>
+</html>

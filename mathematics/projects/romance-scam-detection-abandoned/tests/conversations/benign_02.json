@@ -1,0 +1,21 @@
+{
+  "label": 0,
+  "source": "synthetic:example:long-distance",
+  "messages": [
+    {"speaker": "S", "text": "hiii how was the interview", "timestamp": "2026-03-20T18:00:00Z"},
+    {"speaker": "V", "text": "ok i think? the panel was rough though. one guy kept asking weird hypotheticals", "timestamp": "2026-03-20T18:10:00Z"},
+    {"speaker": "S", "text": "ugh i hate that. like just ask normal questions", "timestamp": "2026-03-20T18:11:00Z"},
+    {"speaker": "V", "text": "right? anyway, told my mom about you finally", "timestamp": "2026-03-20T18:20:00Z"},
+    {"speaker": "S", "text": "OH GOD what did she say", "timestamp": "2026-03-20T18:21:00Z"},
+    {"speaker": "V", "text": "lol she's chill, she said she wants to meet u next time she visits", "timestamp": "2026-03-20T18:22:00Z"},
+    {"speaker": "S", "text": "ok that's actually so nice. i'll bring her tea she likes the fancy kind right", "timestamp": "2026-03-20T18:25:00Z"},
+    {"speaker": "V", "text": "yes earl grey, you remembered", "timestamp": "2026-03-20T18:26:00Z"},
+    {"speaker": "S", "text": "im a good listener", "timestamp": "2026-03-20T18:27:00Z"},
+    {"speaker": "V", "text": "the best", "timestamp": "2026-03-20T18:30:00Z"},
+    {"speaker": "S", "text": "miss u btw", "timestamp": "2026-03-20T18:45:00Z"},
+    {"speaker": "V", "text": "miss u too. 18 days", "timestamp": "2026-03-20T18:46:00Z"},
+    {"speaker": "S", "text": "ok one more thing then i'll let u sleep. did u book the dog sitter for when ur gone", "timestamp": "2026-03-20T22:00:00Z"},
+    {"speaker": "V", "text": "shoot no. i'll do it tomorrow morning. remind me", "timestamp": "2026-03-20T22:05:00Z"},
+    {"speaker": "S", "text": "consider yourself reminded. night <3", "timestamp": "2026-03-20T22:06:00Z"}
+  ]
+}

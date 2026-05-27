@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+
+# Virtualenv
+.venv/
+venv/
+.env
+
+# IDE
+.idea/
+.vscode/
+
+# Trained models and downloaded data (regenerable)
+models/*.joblib
+models/*.pkl
+data/*.jsonl
+data/*.csv
+data/*.parquet
+# ...but keep the small seed files that ship with the repo so the project
+# works out of the box. DATA_COLLECTION.md explains how the rest is fetched.
+!data/.gitkeep
+!data/vad_subset.csv
+!data/ragebait_templates.jsonl
+
+# Plots
+images/*.png
+images/*.pdf
+!images/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db

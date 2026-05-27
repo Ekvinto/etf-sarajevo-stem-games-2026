@@ -1,0 +1,22 @@
+{
+  "label": 1,
+  "source": "synthetic:example:military-romance",
+  "messages": [
+    {"speaker": "S", "text": "Hello beautiful, my name is Captain Michael Brooks. I am currently deployed in a peacekeeping mission and your profile caught my attention immediately.", "timestamp": "2026-03-01T10:00:00Z"},
+    {"speaker": "V", "text": "hi nice to meet you", "timestamp": "2026-03-01T10:30:00Z"},
+    {"speaker": "S", "text": "The pleasure is entirely mine. Service to my country has been my life but it has also been lonely. Your smile in your photo gave me hope today.", "timestamp": "2026-03-01T10:40:00Z"},
+    {"speaker": "V", "text": "thank you :) where are you deployed?", "timestamp": "2026-03-01T10:45:00Z"},
+    {"speaker": "S", "text": "I cannot disclose specifics for security reasons but I can say it is a difficult region. Tell me about yourself, what brings you joy in life?", "timestamp": "2026-03-01T11:00:00Z"},
+    {"speaker": "V", "text": "i like reading and gardening mostly", "timestamp": "2026-03-01T11:05:00Z"},
+    {"speaker": "S", "text": "How wonderful, those are the marks of a thoughtful soul. I dream of one day having a quiet garden of my own, perhaps with someone special.", "timestamp": "2026-03-01T11:10:00Z"},
+    {"speaker": "V", "text": "that would be nice", "timestamp": "2026-03-01T11:15:00Z"},
+    {"speaker": "S", "text": "My dear, our conversations have become the highlight of my days. I feel I can trust you with anything. Some matters here are best kept between us, away from prying family eyes who would not understand a love this pure.", "timestamp": "2026-03-05T09:00:00Z"},
+    {"speaker": "V", "text": "okay", "timestamp": "2026-03-05T09:15:00Z"},
+    {"speaker": "S", "text": "I have a serious matter I must share with you. I have accumulated savings during my deployment that I cannot access from this region. The military bureaucracy requires a civilian intermediary to release the funds.", "timestamp": "2026-03-08T14:20:00Z"},
+    {"speaker": "V", "text": "what does that mean", "timestamp": "2026-03-08T14:25:00Z"},
+    {"speaker": "S", "text": "If you could help me, you would receive a portion as gratitude. But first, the release process requires a 1200 dollar administrative fee that must be paid by Friday to my logistics officer. After that the full amount will be wired to you.", "timestamp": "2026-03-08T14:30:00Z"},
+    {"speaker": "V", "text": "1200 is a lot", "timestamp": "2026-03-08T14:45:00Z"},
+    {"speaker": "S", "text": "I know my love and I would never ask if there was another way. The window for this transfer closes Friday at 1700 hours UTC. Please send the fee via Western Union to the name I provide. I am counting on you.", "timestamp": "2026-03-09T11:00:00Z"},
+    {"speaker": "S", "text": "Time is running short my dearest. Please confirm you can wire the fee today. Once we get past this hurdle our future is secure.", "timestamp": "2026-03-10T08:00:00Z"}
+  ]
+}

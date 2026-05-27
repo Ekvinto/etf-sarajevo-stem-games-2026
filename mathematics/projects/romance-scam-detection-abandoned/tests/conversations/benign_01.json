@@ -1,0 +1,21 @@
+{
+  "label": 0,
+  "source": "synthetic:example:first-date-planning",
+  "messages": [
+    {"speaker": "S", "text": "hey! good morning. how did u sleep", "timestamp": "2026-04-12T09:00:00Z"},
+    {"speaker": "V", "text": "lol terrible, neighbors dog was barking til like 2am", "timestamp": "2026-04-12T09:05:00Z"},
+    {"speaker": "S", "text": "ughhh i hate when that happens. maybe coffee at the place i mentioned saturday? the one near the park", "timestamp": "2026-04-12T09:08:00Z"},
+    {"speaker": "V", "text": "yes! the one with the weird mural?", "timestamp": "2026-04-12T09:09:00Z"},
+    {"speaker": "S", "text": "haha yes that one. 11ish?", "timestamp": "2026-04-12T09:10:00Z"},
+    {"speaker": "V", "text": "11 works. should i bring anything", "timestamp": "2026-04-12T09:12:00Z"},
+    {"speaker": "S", "text": "just yourself lol", "timestamp": "2026-04-12T09:13:00Z"},
+    {"speaker": "V", "text": "ok cool. btw did you see the game last night", "timestamp": "2026-04-12T09:20:00Z"},
+    {"speaker": "S", "text": "no i missed it! who won", "timestamp": "2026-04-12T09:22:00Z"},
+    {"speaker": "V", "text": "we lost by 2 ugh", "timestamp": "2026-04-12T09:23:00Z"},
+    {"speaker": "S", "text": "noooo. ok i need to know your team allegiances before saturday this is important info", "timestamp": "2026-04-12T09:25:00Z"},
+    {"speaker": "V", "text": "lol fair. i'll bring a flowchart", "timestamp": "2026-04-12T09:26:00Z"},
+    {"speaker": "S", "text": "i look forward to your presentation", "timestamp": "2026-04-12T09:27:00Z"},
+    {"speaker": "V", "text": "ok gotta get to work. talk later?", "timestamp": "2026-04-12T09:30:00Z"},
+    {"speaker": "S", "text": "yes! have a good day", "timestamp": "2026-04-12T09:31:00Z"}
+  ]
+}

@@ -1,0 +1,16 @@
+# Core scientific stack
+numpy>=2.1
+scipy>=1.14
+
+# Computer vision
+opencv-contrib-python>=4.10   # contrib gives us SIFT/SURF (SIFT is also in main since 4.4 but contrib is safest)
+
+# Image IO & utilities
+Pillow>=11.0
+tqdm>=4.66
+
+# Visualization
+# open3d is optional - if it fails to install on Python 3.13, you can skip it
+# and just use MeshLab to view the .ply files
+open3d>=0.18 ; python_version < "3.14"
+matplotlib>=3.9

@@ -1,0 +1,27 @@
+# Additional hedging phrase regex patterns.
+# Built-ins in src/features/ai_lexical.py cover "arguably", "perhaps", "presumably",
+# "to some extent", "on the one/other hand", "that said", etc.
+\b(might|may|could) (be|have|suggest|indicate|imply|reflect)\b
+\bit appears (that|to be)\b
+\bit seems (that|to be|like)\b
+\bbroadly speaking\b
+\bin a sense\b
+\bin a way\b
+\bone (could|might|may) (say|argue|note|consider)\b
+\bsomewhat\b
+\brelatively\b
+\bfairly\b
+\bquite (likely|possibly)\b
+\btends? to\b
+\bmore often than not\b
+\bin most (cases|instances)\b
+\boften(times)?\b
+\bsometimes\b
+\bocasionally\b
+\bnonetheless\b
+\bnevertheless\b
+\balthough\b
+\bdespite (this|the|that)\b
+\bgranted,\b
+\badmittedly,?\b
+\bof course,\b

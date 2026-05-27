@@ -1,0 +1,3 @@
+# Evaluation plots are written here by src/evaluate.py:
+#   roc.png, pr.png, calibration.png, ablation.png, ablation.csv
+# Drop them into the LaTeX report's images/ folder.

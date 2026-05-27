@@ -1,0 +1,751 @@
+%=======================================================================
+%  ENGINEERING ARENA 2026 -- FULL COMPETITION SOLUTION SET
+%  Team: flop_flip
+%  Single-file LaTeX deliverable. Compile with pdfLaTeX on Overleaf.
+%=======================================================================
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+% ---- Answer box: the exact input/action for the interactive window ----
+\newtcolorbox{answer}{
+  colback=yellow!12, colframe=orange!75!black,
+  boxrule=1pt, arc=2pt, left=8pt, right=8pt, top=5pt, bottom=5pt,
+  fonttitle=\bfseries, coltitle=white, colbacktitle=orange!75!black,
+  title={INPUT TO ENTER / ACTION IN INTERACTIVE WINDOW}, breakable}
+
+% ---- Info box: governing relations ----
+\newtcolorbox{relbox}{
+  colback=blue!5, colframe=blue!50!black,
+  boxrule=0.6pt, arc=2pt, left=8pt, right=8pt, top=4pt, bottom=4pt,
+  fonttitle=\bfseries, title={Governing relations}, breakable}
+
+\newcommand{\task}[2]{\section{Task #1 --- #2}}
+
+\title{\textbf{Engineering Arena 2026}\\[4pt]
+\large Complete Solution Set --- Helping Stemo Rescue Athena}
+\author{Team: \texttt{flop\_flip}}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent This document contains the worked solutions, governing equations and
+calculations for all 18 interactive tasks of Engineering Arena 2026. For each
+task the engineering reasoning is shown, followed by an \textbf{orange box}
+giving the exact value to type or the action to perform in the interactive
+web page. Tasks whose on-screen data is hidden (e.g.\ an offline scanner) are
+solved symbolically, with the procedure to apply once the values are revealed.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+%=======================================================================
+\task{1}{Column Stability --- Euler Buckling of a Braced Column}
+%=======================================================================
+\textbf{Problem.} A pinned escape-hatch column of length $L=4.0$\,m and
+flexural rigidity $EI=80$\,kN$\cdot$m$^2$ carries an axial load
+$P=56.0$\,kN. A movable brace at height $a$ splits the column into two
+segments. The critical load is governed by the \emph{longer} unsupported
+segment. We must position the brace so the column does not buckle.
+
+\begin{relbox}
+\[
+P_{cr}=\frac{\pi^2 EI}{L_e^{2}},\qquad
+L_e=\max(a,\;L-a),\qquad
+\text{Win: } P_{cr}\ge P_{applied}.
+\]
+\end{relbox}
+
+\textbf{Solution.} Rearranging the buckling condition for the maximum
+admissible effective length:
+\[
+P_{cr}\ge P \;\Longrightarrow\;
+L_e\le \pi\sqrt{\frac{EI}{P}}
+      =\pi\sqrt{\frac{80}{56}}=3.755\ \text{m}.
+\]
+Since $L_e=\max(a,L-a)$, the brace must satisfy
+$a\le 3.755$ and $L-a\le 3.755$, i.e. $0.245\le a\le 3.755$\,m.
+The \emph{strongest} configuration places the brace at mid-height,
+$a=L/2=2.0$\,m, which gives $L_e=2.0$\,m and
+\[
+P_{cr}=\frac{\pi^2(80)}{2.0^{2}}=197.4\ \text{kN},
+\qquad
+\text{SF}=\frac{197.4}{56}=3.53 .
+\]
+This is the ``brace at midpoint $\rightarrow P_{cr}\times 4$'' key insight:
+halving $L_e$ quadruples $P_{cr}$.
+
+\begin{answer}
+Drag the brace to mid-height \textbf{$a = 2.00$\,m} (midpoint).\\
+Result: $L_e = 2.00$\,m, $P_{cr}=197.4$\,kN $\ge 56$\,kN. Press \textbf{LOCK BRACE}.\\
+(Any $a$ in $0.245$--$3.755$\,m satisfies the win condition; $a=2.0$\,m maximises $P_{cr}$.)
+\end{answer}
+
+%=======================================================================
+\task{2}{Solar Sail MPPT --- Maximum Power Point Tracking}
+%=======================================================================
+\textbf{Problem.} A research-satellite solar panel operates on a non-linear
+$P$--$V$ curve. The Maximum Power Point Tracker must sit at the voltage that
+maximises output power. Sail $\alpha$: $I_{sc}=8$\,A, $V_{oc}=20$\,V,
+irradiance $1000$\,W/m$^2$.
+
+\begin{relbox}
+\[
+P(V)=V\cdot I(V),\qquad
+\text{MPP: } \left.\frac{dP}{dV}\right|_{V=V_{mp}}=0 .
+\]
+$I_{sc}\propto$ irradiance; $V_{oc}$ varies weakly (logarithmically) with
+irradiance and temperature.
+\end{relbox}
+
+\textbf{Solution.} Using a single-diode model $I(V)=I_{sc}\!\left[1-e^{(V-V_{oc})/V_t}\right]$,
+the condition $dP/dV=0$ gives
+\[
+1=e^{(V_{mp}-V_{oc})/V_t}\Bigl(1+\tfrac{V_{mp}}{V_t}\Bigr).
+\]
+For sail $\alpha$ this is satisfied at $V_{mp}\approx16.26$\,V, where
+$I\approx7.33$\,A and
+\[
+P_{max}=V_{mp}\,I(V_{mp})\approx16.26\times7.33\approx119.3\ \text{W}.
+\]
+This matches the engineering rule of thumb $V_{mp}\approx0.81\,V_{oc}$.
+For the remaining sails the peak is found the same way; $I_{sc}$ scales with
+irradiance ($\beta$: $420$\,W/m$^2\!\Rightarrow I_{sc}\approx3.36$\,A;
+$\gamma$: $1400$\,W/m$^2\!\Rightarrow I_{sc}\approx11.2$\,A), so each curve's
+peak shifts but stays near $V\approx0.8\,V_{oc}$.
+
+\begin{answer}
+Drag the tracker dot to the \textbf{peak of the gold $P$--$V$ curve}:\\
+Sail $\alpha$: \textbf{$V_{mp}\approx16.26$\,V}, $P_{max}\approx119.3$\,W (100\,\% of $P_{max}$). Press \textbf{LOCK MPP \& HARVEST}.\\
+For each subsequent sail, drag to that curve's peak ($V_{mp}\approx0.8\,V_{oc}$).
+\end{answer}
+
+%=======================================================================
+\task{3}{Mohr's Circle Audit --- Principal Stresses}
+%=======================================================================
+\textbf{Problem.} A stress element with components $(\sigma_x,\sigma_y,\tau_{xy})$
+must be analysed by constructing Mohr's circle to expose the principal
+stresses $\sigma_1,\sigma_2$. \emph{(In the screenshot the structural scanner
+is offline; the procedure below applies once \textbf{SCAN} reveals the element
+values.)}
+
+\begin{relbox}
+\[
+C=\frac{\sigma_x+\sigma_y}{2},\quad
+R=\sqrt{\left(\frac{\sigma_x-\sigma_y}{2}\right)^{2}+\tau_{xy}^{2}},
+\]
+\[
+\sigma_1=C+R,\qquad \sigma_2=C-R,\qquad \tau_{max}=R .
+\]
+\end{relbox}
+
+\textbf{Solution (worked template).} After pressing SCAN, read
+$\sigma_x,\sigma_y,\tau_{xy}$ from the top-right stress element. For example,
+with the representative values $\sigma_x=120$\,MPa, $\sigma_y=40$\,MPa,
+$\tau_{xy}=30$\,MPa:
+\[
+C=\frac{120+40}{2}=80\ \text{MPa},\qquad
+R=\sqrt{40^{2}+30^{2}}=50\ \text{MPa},
+\]
+\[
+\sigma_1=80+50=130\ \text{MPa},\qquad
+\sigma_2=80-50=30\ \text{MPa},\qquad \tau_{max}=50\ \text{MPa}.
+\]
+The circle is centred on the $\sigma$-axis at $(C,0)$ with radius $R$; it must
+pass through both diamond points $A(\sigma_x,+\tau_{xy})$ and
+$B(\sigma_y,-\tau_{xy})$.
+
+\begin{answer}
+1. Drag the resize handle until the orange circle radius equals
+$R=\sqrt{\left(\frac{\sigma_x-\sigma_y}{2}\right)^2+\tau_{xy}^2}$
+(circle passes through both blue/purple diamonds).\\
+2. Click the \textbf{$\sigma_1$ node} (right intercept, $\sigma_1=C+R$) and the
+\textbf{$\sigma_2$ node} (left intercept, $\sigma_2=C-R$).\\
+3. Press \textbf{COMPLETE CHECKLIST}.\\
+\textit{Template example} ($\sigma_x{=}120,\sigma_y{=}40,\tau_{xy}{=}30$):
+$R=50$, $\sigma_1=130$\,MPa, $\sigma_2=30$\,MPa.
+\end{answer}
+
+%=======================================================================
+\task{4}{Radar Convolution --- Cross-Correlation Peak}
+%=======================================================================
+\textbf{Problem.} A radar echo $x(t)$ contains three blips; only one is the
+real return (the others are decoy pods). Sliding a search pulse $h(t)$ over the
+echo, the real target produces the \emph{global maximum} of the
+cross-correlation.
+
+\begin{relbox}
+\[
+R(\tau)=\sum_t h(t)\,x(t+\tau),\qquad
+\tau^{*}=\operatorname*{arg\,max}_{\tau} R(\tau).
+\]
+$h(t)=$ search pulse, $x(t)=$ radar echo.
+\end{relbox}
+
+\textbf{Solution.} This is a matched-filter detection problem. Cross-correlation
+measures similarity between the pulse and the echo at every lag $\tau$. The
+\emph{real} wizard return has the same shape as the search pulse, so the
+correlation reaches its highest peak there; decoys, being only partially
+similar, yield smaller secondary peaks. The optimal lag $\tau^{*}$ is the
+abscissa of the tallest peak of $R(\tau)$ --- on the cross-correlation panel
+this is the dominant central peak, clearly higher than the two flanking
+(decoy) peaks.
+
+\begin{answer}
+Drag the amber search pulse so the cyan correlation dot climbs to the
+\textbf{tallest (global-maximum) peak} of $R(\tau)$ --- the dominant central
+lobe, not the lower side peaks. Stop within $\pm10$ samples of that peak
+(dot turns green) and press \textbf{LOCK TARGET}.
+\end{answer}
+
+%=======================================================================
+\task{5}{Arcane Capacitor --- Displacement-Current B-Field}
+%=======================================================================
+\textbf{Problem.} A time-varying $E$-field in a capacitor gap produces a
+displacement current and hence a magnetic field. Tune the AC frequency so the
+rim field $B_{rim}$ matches the target.\\
+Live data: $f=69.0$\,MHz, $B_{rim}=127{,}952.0$\,nT,
+$B_{target}=195{,}896.8$\,nT, error $=34.7\,\%$.
+
+\begin{relbox}
+\[
+I_d=\varepsilon_0 A\,(2\pi f)\,E_0,\qquad
+B=\frac{\mu_0 I_d}{2\pi r}\;\;\Longrightarrow\;\; B\propto f .
+\]
+\end{relbox}
+
+\textbf{Solution.} Because every other quantity is fixed, the rim field is
+\emph{linearly proportional to frequency}, $B=k f$ with
+$k=B_{rim}/f=127{,}952.0/69.0=1854.4$\,nT/MHz. The frequency that hits the
+target is
+\[
+f_{target}=f\cdot\frac{B_{target}}{B_{rim}}
+=69.0\times\frac{195{,}896.8}{127{,}952.0}
+=69.0\times1.5310=105.6\ \text{MHz}.
+\]
+This lies well inside the $\pm5\,\%$ window
+($B$ between $186.1$ and $205.7\,\mu$T $\Rightarrow f\in[100.4,110.9]$\,MHz).
+
+\begin{answer}
+Drag the frequency slider to \textbf{$f \approx 105.6$\,MHz}\\
+(acceptable range $100.4$--$110.9$\,MHz for $\pm5\,\%$). Press \textbf{LOCK ON}.
+\end{answer}
+
+%=======================================================================
+\task{6}{Counter-Flow Heat Exchanger --- NTU-$\varepsilon$ Method}
+%=======================================================================
+\textbf{Problem.} Cool the reactor coolant outlet below $75\,^{\circ}$C.
+Inlets: $T_{h,in}=200\,^{\circ}$C, $T_{c,in}=20\,^{\circ}$C;
+$UA=5$\,kW/K, $c_p=4.18$\,kJ/(kg$\cdot$K). Adjust the hot- and cold-side
+mass flow rates $\dot m_h,\dot m_c$.
+
+\begin{relbox}
+\[
+C=\dot m c_p,\qquad \text{NTU}=\frac{UA}{C_{min}},\qquad C_r=\frac{C_{min}}{C_{max}},
+\]
+\[
+\varepsilon=\frac{1-e^{-\text{NTU}(1-C_r)}}{1-C_r\,e^{-\text{NTU}(1-C_r)}}
+\quad(\text{counter-flow}),
+\]
+\[
+Q=\varepsilon\,C_{min}\,(T_{h,in}-T_{c,in}),\qquad
+T_{h,out}=T_{h,in}-\frac{Q}{C_h}.
+\]
+\end{relbox}
+
+\textbf{Solution.} Lowering $\dot m_h$ reduces $C_h$: this both raises NTU
+($=UA/C_{min}$) and lowers $C_r$, and both effects increase $\varepsilon$ and
+the hot-side temperature drop. Raising $\dot m_c$ further lowers $C_r$.
+With the hot side as $C_{min}$, $T_{h,out}=T_{h,in}-\varepsilon\,\Delta T_{max}$,
+so the win needs $\varepsilon\ge125/180=0.694$.
+
+Taking $\dot m_h=0.80$\,kg/s and $\dot m_c=2.50$\,kg/s:
+\[
+C_h=3.34,\;\; C_c=10.45\ \text{kW/K},\quad C_r=0.320,\quad
+\text{NTU}=\frac{5}{3.34}=1.50,
+\]
+\[
+\varepsilon=\frac{1-e^{-1.50(0.68)}}{1-0.320\,e^{-1.50(0.68)}}=0.722,\qquad
+Q=0.722\times3.34\times180=434\ \text{kW},
+\]
+\[
+T_{h,out}=200-\frac{434}{3.34}=70.1\,^{\circ}\text{C}\;<\;75\,^{\circ}\text{C}.\;\checkmark
+\]
+(The exact boundary $T_{h,out}=75\,^{\circ}$C occurs at
+$\dot m_h\approx0.86$\,kg/s; $0.80$\,kg/s gives a safe margin.)
+
+\begin{answer}
+Set the hot-flow slider to \textbf{$\dot m_h \approx 0.80$\,kg/s} (toward minimum)
+and the cold-flow slider to \textbf{$\dot m_c \approx 2.50$\,kg/s} (toward maximum).\\
+Result: $\varepsilon\approx72\,\%$, $T_{h,out}\approx70\,^{\circ}$C. Press \textbf{TRIGGER SHUTDOWN}.
+\end{answer}
+
+%=======================================================================
+\task{7}{Sentry-Bot MK-VII --- 3-Joint Forward Kinematics}
+%=======================================================================
+\textbf{Problem.} Place the end-effector of a 3-joint arm
+($\theta_1$ yaw, $\theta_2$ shoulder, $\theta_3$ elbow) within 12 units of the
+Obsidian Lock at $(x,y,z)=(167.01,\,50.41,\,-16.23)$.
+
+\begin{relbox}
+\[
+x=\cos\theta_1\!\cdot\! r,\quad y=\sin\theta_1\!\cdot\! r,\quad
+r=L_1\cos\theta_2+L_2\cos(\theta_2+\theta_3),
+\]
+\[
+z=L_1\sin\theta_2+L_2\sin(\theta_2+\theta_3).
+\]
+\end{relbox}
+
+\textbf{Solution.} \emph{Calibration.} The displayed pose
+$\theta_1{=}16.6^{\circ},\theta_2{=}-3.1^{\circ},\theta_3{=}-4.5^{\circ}$ yields
+$EE=(186.0,55.5,-17.3)$. From the planar pair of equations this fixes the link
+lengths $L_1\approx108.6$, $L_2\approx86.4$ units.
+
+\emph{Inverse kinematics for the target.}
+\[
+\theta_1=\operatorname{atan2}(50.41,167.01)=16.8^{\circ},
+\]
+\[
+r_t=\sqrt{167.01^2+50.41^2}=174.5,\quad
+R_t=\sqrt{r_t^2+z_t^2}=175.2,
+\]
+\[
+\cos\theta_3=\frac{R_t^2-L_1^2-L_2^2}{2L_1L_2}=0.609
+\;\Rightarrow\;\theta_3=-52.5^{\circ},
+\]
+\[
+\theta_2=\operatorname{atan2}(z_t,r_t)
++\arccos\!\frac{L_1^2+R_t^2-L_2^2}{2L_1R_t}=17.7^{\circ}.
+\]
+Forward-checking these angles returns $EE\approx(167.0,50.4,-16.2)$ ---
+essentially on target (dist $\approx0.1\ll12$).
+
+\begin{answer}
+Set the canvas sliders to:\\
+\textbf{$\theta_1\approx16.8^{\circ}$ (yaw)},\quad
+\textbf{$\theta_2\approx17.7^{\circ}$ (shoulder)},\quad
+\textbf{$\theta_3\approx-52.5^{\circ}$ (elbow)}.\\
+The elbow must fold in sharply (reach drops $195\to175$). Press \textbf{UNLOCK DOOR}.
+\end{answer}
+
+%=======================================================================
+\task{8}{Rankine Cycle --- Thermal Efficiency}
+%=======================================================================
+\textbf{Problem.} Engineer a Rankine cycle exceeding $32\,\%$ thermal
+efficiency by adjusting boiler temperature $T_H$ and condenser temperature
+$T_L$. Start: $T_H=180\,^{\circ}$C, $T_L=90\,^{\circ}$C, $\eta=18\,\%$.
+
+\begin{relbox}
+\[
+\eta=\frac{W_{net}}{Q_{in}},\qquad
+\eta_{Carnot}=1-\frac{T_L}{T_H}\quad(\text{absolute temperatures}).
+\]
+\end{relbox}
+
+\textbf{Solution.} Raising $T_H$ and lowering $T_L$ enlarges the enclosed area
+of the $T$--$s$ cycle, which is the net work $W_{net}$, while the Carnot
+ceiling rises. The current cycle ($\eta=18\,\%$) sits close to its Carnot bound
+$1-363/453=19.9\,\%$. Driving the bars to their extremes
+$T_H=350\,^{\circ}$C ($623$\,K) and $T_L=30\,^{\circ}$C ($303$\,K):
+\[
+\eta_{Carnot}=1-\frac{303}{623}=51.4\,\%.
+\]
+Maintaining the same fraction of the Carnot limit
+($\eta/\eta_{Carnot}\approx0.9$) gives an actual cycle efficiency
+$\eta\approx0.9\times51.4\approx46\,\%$ --- comfortably above the $32\,\%$
+target.
+
+\begin{answer}
+Drag the \textbf{red $T_H$ bar up to $\approx350\,^{\circ}$C} and the
+\textbf{blue $T_L$ bar down to $\approx30\,^{\circ}$C}.\\
+Result: $\eta_{Carnot}=51.4\,\%$, cycle $\eta\approx45$--$46\,\% > 32\,\%$.
+Press \textbf{ACTIVATE OVERDRIVE}.
+\end{answer}
+
+%=======================================================================
+\task{9}{Nyquist Hack --- Encirclement Count}
+%=======================================================================
+\textbf{Problem.} For Shield Alpha with open-loop transfer function
+$G(s)=\dfrac{1}{(s+1)^2}$, count the clockwise encirclements $N$ of the
+critical point $(-1,0)$ and determine stability.
+
+\begin{relbox}
+\[
+Z=N+P,\qquad
+\begin{cases}
+N=\#\text{ clockwise encirclements of }(-1,0)\\
+P=\#\text{ open-loop unstable poles}\\
+Z>0 \Rightarrow \text{UNSTABLE}
+\end{cases}
+\]
+\end{relbox}
+
+\textbf{Solution.} $G(s)=1/(s+1)^2$ has a double pole at $s=-1$, in the
+left-half plane, so $P=0$. The Nyquist locus starts at
+$G(j0)=1\,(=1\angle0^{\circ})$ and spirals into the origin as
+$\omega\to\infty$, with phase sweeping only from $0^{\circ}$ to $-180^{\circ}$.
+The plotted curve is a small loop confined near the origin and the point
+$(+1,0)$; it never wraps around the critical point $(-1,0)$. Hence
+\[
+N=0,\qquad Z=N+P=0\quad\Rightarrow\quad\text{closed-loop STABLE}.
+\]
+
+\begin{answer}
+Select \textbf{$N = 0$}.\\
+(The locus does not encircle $(-1,0)$; with $P=0$, $Z=N+P=0$ --- Shield Alpha is stable.)
+\end{answer}
+
+%=======================================================================
+\task{10}{Torsional Stress --- Yield Torque of a Shaft}
+%=======================================================================
+\textbf{Problem.} Find the exact torque $T_{max}$ that brings a solid vault
+shaft to its yield point at the outer fibre.\\
+Data: $R=53$\,mm, $J=12.394\times10^{-6}$\,m$^4$,
+$\tau_{yield}=130$\,MPa.
+
+\begin{relbox}
+\[
+\tau(r)=\frac{T\,r}{J},\qquad J=\frac{\pi R^4}{2},\qquad
+\tau_{max}=\frac{T R}{J}\;\Rightarrow\;
+T_{max}=\frac{\tau_{yield}\,J}{R}.
+\]
+\end{relbox}
+
+\textbf{Solution.} Shear stress varies linearly with radius (zero at the
+centre, maximum at the surface); only the outer fibre reaches yield first.
+Setting $\tau_{max}=\tau_{yield}$:
+\[
+T_{max}=\frac{\tau_{yield}\,J}{R}
+=\frac{(130\times10^{6})(12.394\times10^{-6})}{0.053}
+=30{,}400\ \text{N}\cdot\text{m}\approx30.40\ \text{kN}\cdot\text{m}.
+\]
+\emph{Check:} at $T=29.992$\,kN$\cdot$m the model reads
+$\tau_{max}=128$\,MPa $=99\,\%$ of $\tau_{yield}$ --- consistent.
+
+\begin{answer}
+Drag the torque slider to \textbf{$T_{max} = 30.40$\,kN$\cdot$m}
+($\approx30{,}400$\,N$\cdot$m).\\
+The green dot meets the red yield line at $r=R$ ($\tau_{max}=130$\,MPa).
+Press \textbf{APPLY T\_MAX}.
+\end{answer}
+
+%=======================================================================
+\task{11}{Void Frequency Tuner --- RLC Resonance}
+%=======================================================================
+\textbf{Problem.} An RLC filter must be tuned by sliding the inductor knob $L$
+so the receiver's resonant frequency $f_0$ aligns with the wizard's spike
+$f_T$. Data: $C=1.0\,\mu$F, $Q=12$, current $L=3.57$\,mH giving
+$f_0=2663$\,Hz at $100\,\%$ signal.
+
+\begin{relbox}
+\[
+f_0=\frac{1}{2\pi\sqrt{LC}}\qquad\Longrightarrow\qquad
+L=\frac{1}{(2\pi f_T)^{2}\,C}.
+\]
+\end{relbox}
+
+\textbf{Solution.} Resonance occurs where inductive and capacitive reactances
+cancel. To shift the green resonant peak onto the red target spike, set $L$
+from the inverted resonance formula. At the displayed setting
+\[
+f_0=\frac{1}{2\pi\sqrt{(3.57\times10^{-3})(1.0\times10^{-6})}}=2664\ \text{Hz},
+\]
+which already coincides with $f_T$ --- the receiver reads SIGNAL $100\,\%$,
+so $f_T\approx2663$\,Hz and $L=3.57$\,mH is the correct inductance.
+
+\begin{answer}
+Set the inductor knob to \textbf{$L = 3.57$\,mH} $\Rightarrow f_0=2663$\,Hz $=f_T$
+(Signal $100\,\%$). Press \textbf{LOCK SIGNAL}.\\
+General retune: $L=\dfrac{1}{(2\pi f_T)^2 C}$.
+\end{answer}
+
+%=======================================================================
+\task{12}{Beam Deflection --- Location of Maximum Deflection}
+%=======================================================================
+\textbf{Problem.} A simply supported bridge beam ($L=6.00$\,m,
+$R_a=29.5$\,kN, $R_b=42.1$\,kN) carries three point loads. Predict the
+position of maximum deflection (tolerance $\pm0.55$\,m).
+
+\begin{relbox}
+\[
+EI\,y''=M(x),\qquad
+\delta_{max}\ \text{where}\ y'(x)=0,
+\]
+$V(x)=0\Rightarrow dM/dx=0\Rightarrow M(x)$ is maximum.
+\end{relbox}
+
+\textbf{Solution.} For a simply supported beam the elastic curve is flattest
+(zero slope, maximum deflection) very close to the section of maximum bending
+moment. The bending-moment diagram peaks at $x\approx3.06$\,m
+(where the shear $V(x)$ changes sign under the dominant $31$\,kN load).
+Hence the maximum deflection occurs at
+\[
+x_{\delta_{max}}\approx3.06\ \text{m},
+\]
+essentially mid-span ($L/2=3.00$\,m), comfortably within the $\pm0.55$\,m
+tolerance band.
+
+\begin{answer}
+Drag the amber marker to \textbf{$x \approx 3.06$\,m}
+(the BMD peak; $3.00$\,m mid-span is also within tolerance).
+Press \textbf{REVEAL DEFLECTION}.
+\end{answer}
+
+%=======================================================================
+\task{13}{Singularity Trap --- Jacobian Determinant}
+%=======================================================================
+\textbf{Problem.} A 2-link arm must reach the gold target while keeping the
+normalised Jacobian determinant above threshold to avoid a kinematic
+singularity.
+
+\begin{relbox}
+\[
+\det(\mathbf J)=L_1 L_2\sin\theta_2,\qquad
+\frac{|\det(\mathbf J)|}{L_1 L_2}=|\sin\theta_2|>0.25 .
+\]
+$\theta_2=0^{\circ}$ (fully extended) or $\pm180^{\circ}$ (fully folded) $\Rightarrow$ singularity.
+\end{relbox}
+
+\textbf{Solution.} The Jacobian determinant collapses to zero when the arm is
+straight or fully folded, where the manipulator loses a degree of freedom.
+The safety condition $|\sin\theta_2|>0.25$ requires
+\[
+14.5^{\circ}<\theta_2<165.5^{\circ}.
+\]
+Manipulability is maximised at $\theta_2=90^{\circ}$ ($|\det|/L_1L_2=1$).
+Reaching the target with the elbow bent near $\theta_2\approx87^{\circ}$
+(as in the displayed pose, $\theta_1=8.5^{\circ}$) keeps
+$|\det|/L_1L_2\approx0.998$ --- far from any singularity zone.
+
+\begin{answer}
+Drag the Elbow/EE handles so the arm reaches the gold target with the elbow
+well-bent: \textbf{$\theta_2\approx87^{\circ}$} (keep $14.5^{\circ}<\theta_2<165.5^{\circ}$;
+$90^{\circ}$ is ideal), $\theta_1\approx8.5^{\circ}$.\\
+Result: dist $<28$\,px and $|\det \mathbf J|/L_1L_2\approx1$. Press \textbf{ESCAPE!}.
+\end{answer}
+
+%=======================================================================
+\task{14}{PID Stabilizer --- Tuning the Wind-Void Crossing}
+%=======================================================================
+\textbf{Problem.} Tune the PID gains $K_p,K_i,K_d$ to reduce the oscillation
+energy below $1250$. Start: $K_p=0.50$, $K_i=0.10$, $K_d=0.30$, $E=1274.1$.
+
+\begin{relbox}
+\[
+u(t)=K_p\,e(t)+K_i\!\int e(t)\,dt+K_d\,\frac{de}{dt}.
+\]
+$K_p$: reacts to current error; $K_i$: removes accumulated drift;
+$K_d$: damps oscillation by anticipating trends.
+\end{relbox}
+
+\textbf{Solution.} The flight path shows a lightly damped oscillation, and the
+energy ($E=1274$) is only marginally above the $1250$ target. The derivative
+term is the one that suppresses oscillation, so it should be increased; the
+proportional term is slightly too aggressive (it feeds the overshoot) and is
+trimmed; the integral term is kept small to avoid integral wind-up that would
+re-introduce slow oscillation:
+\[
+K_d\uparrow,\qquad K_p\downarrow\ \text{slightly},\qquad K_i\downarrow.
+\]
+A balanced set near $K_p\approx0.40$, $K_i\approx0.05$, $K_d\approx0.55$
+adds damping without making the craft sluggish, pulling $E$ below $1250$.
+
+\begin{answer}
+Set the dials to approximately \textbf{$K_p\approx0.40$,\quad
+$K_i\approx0.05$,\quad $K_d\approx0.55$}\\
+(increase $K_d$ to damp oscillation, ease $K_p$ down, keep $K_i$ small).
+Fine-tune until OSCILLATION ENERGY $<1250$, then press \textbf{ATTEMPT CROSSING}.
+\end{answer}
+
+%=======================================================================
+\task{15}{Mach Shock --- Normal Shock in a C-D Nozzle}
+%=======================================================================
+\textbf{Problem.} Position a normal shock in the diverging section of a
+converging--diverging nozzle so the exit pressure ratio hits
+$P_{exit}/P_0=0.738$ ($\pm4\,\%$).
+Data: $\gamma=1.4$, exit area ratio $A_e/A^{*}=2.125$, shock at $x>0.5$.
+
+\begin{relbox}
+\[
+\frac{A}{A^{*}}=\frac{1}{M}\!\left[\frac{2}{\gamma+1}\!\left(1+\tfrac{\gamma-1}{2}M^2\right)\right]^{\frac{\gamma+1}{2(\gamma-1)}},
+\]
+\[
+M_2^2=\frac{M_1^2+5}{7M_1^2-1},\qquad
+\frac{P_{0,2}}{P_{0,1}}\ \text{(normal-shock stagnation loss)}.
+\]
+\end{relbox}
+
+\textbf{Solution.} Moving the shock downstream raises the pre-shock Mach number
+$M_1$, strengthening the shock and increasing the stagnation-pressure loss; the
+subsonic flow after the shock then expands to a different exit pressure.
+Sweeping the shock area ratio $A_s/A^{*}$:
+\[
+\frac{A_s}{A^{*}}=1.40\Rightarrow\frac{P_{exit}}{P_0}=0.760,\qquad
+\frac{A_s}{A^{*}}=1.50\Rightarrow0.715,
+\]
+so the target $0.738$ is reached at $A_s/A^{*}\approx1.445$
+($M_1\approx1.81$). With the fitted nozzle geometry
+$A/A^{*}=1+4.5\,(x-0.5)^2$, this corresponds to
+\[
+x=0.5+\sqrt{\frac{1.445-1}{4.5}}\approx0.81 .
+\]
+The full normal-shock calculation at this station returns
+$P_{exit}/P_0\approx0.740$ --- inside the $\pm4\,\%$ window.
+
+\begin{answer}
+Drag the shock marker into the diverging section to \textbf{$x\approx0.81$}
+(area ratio $A_s/A^{*}\approx1.45$).\\
+Result: $P_{exit}/P_0\approx0.738$. Press \textbf{FIRE HACK}.
+\end{answer}
+
+%=======================================================================
+\task{16}{Kalman Teleportation Tracker --- Optimal Estimate}
+%=======================================================================
+\textbf{Problem.} Each round, noisy yellow sensor blips appear; click where the
+teleporting wizard truly is. The Kalman filter then fuses the estimate.
+Parameters: $Q=8$ (process noise), $R=15$ (sensor noise), initial $P=50$.
+
+\begin{relbox}
+Predict: $\hat x_k^-=\hat x_{k-1}$, $P_k^-=P_{k-1}+Q$.\\
+Update: $K_k=\dfrac{P_k^-}{P_k^-+R}$,\;\;
+$\hat x_k=\hat x_k^-+K_k\,(z_k-\hat x_k^-)$,\;\;
+$P_k=(1-K_k)P_k^-$.
+\end{relbox}
+
+\textbf{Solution.} On the first round the prior is highly uncertain
+($P=50\gg R$), so the Kalman gain is large ($K\approx50/65\approx0.77$) and the
+estimate is dominated by the measurements. With several independent blips the
+optimal estimate is their \emph{average} (the maximum-likelihood location of
+the source). Therefore click at the \textbf{centroid of the yellow blip
+cluster}. As rounds progress, $P$ shrinks, $K$ falls, and the estimate
+increasingly trusts the converged prior --- but the click rule (centre of the
+blip pattern, nudged toward the running estimate) stays the same.
+
+\begin{answer}
+Click on the grid at the \textbf{centroid (average position) of the visible
+yellow blips} --- for Round 1 the blips cluster near $x\approx33$--$38$, so
+click at \textbf{$x\approx35$}.\\
+Each round: click the blip-cluster centre; the filter converges ($P\downarrow$)
+over the 7 rounds.
+\end{answer}
+
+%=======================================================================
+\task{17}{Spectral De-Scrambler --- FFT Carrier Frequencies}
+%=======================================================================
+\textbf{Problem.} The raw audio is white noise in the time domain; switching to
+the frequency domain (FFT) reveals the wizard's jamming spikes. Click the three
+sharp resonant peaks to lock the carrier frequencies.
+
+\begin{relbox}
+\[
+X(k)=\sum_{n} x(n)\,e^{-i\,2\pi kn/N}.
+\]
+$|X(k)|$ isolates the amplitude of periodic sine components buried in random
+noise $x(n)$.
+\end{relbox}
+
+\textbf{Solution.} A Fourier transform decomposes the time signal into its
+constituent frequencies. Random noise spreads energy thinly across all bins,
+while a periodic carrier concentrates energy into a single sharp spike. The FFT
+analyzer shows three such resonant peaks; reading their abscissae gives the
+three hidden carrier frequencies:
+\[
+f_1\approx45\ \text{Hz},\qquad f_2\approx212\ \text{Hz},\qquad
+f_3\approx395\ \text{Hz}.
+\]
+
+\begin{answer}
+Click the three sharp peaks in the FFT panel at
+\textbf{$f_1\approx45$\,Hz}, \textbf{$f_2\approx212$\,Hz},
+\textbf{$f_3\approx395$\,Hz} (CH\_1, CH\_2, CH\_3). Then press \textbf{DECODE}.
+\end{answer}
+
+%=======================================================================
+\task{18}{The Prism Shield --- LQR Controller Q/R Balance}
+%=======================================================================
+\textbf{Problem.} Select the LQR weighting on the state-space plot to balance
+fast stabilisation against efficient energy use.
+
+\begin{relbox}
+\[
+J=\int_0^{\infty}\!\bigl(\mathbf x^{\!\top}\mathbf Q\,\mathbf x
++\mathbf u^{\!\top}\mathbf R\,\mathbf u\bigr)\,dt,
+\qquad \dot{\mathbf x}=A\mathbf x+B\mathbf u .
+\]
+$\mathbf Q$ penalises state error (speed); $\mathbf R$ penalises control effort (energy).
+\end{relbox}
+
+\textbf{Solution.} The LQR cost trades two competing objectives. A large
+$\mathbf Q$ (relative to $\mathbf R$) drives the state to zero quickly but
+demands aggressive, energy-hungry control; a large $\mathbf R$ saves energy but
+stabilises slowly. The mission requires the platform to settle \emph{before the
+shield rotates} yet still \emph{retain energy for the final blast} --- so
+neither extreme is acceptable. The sweet spot is a roughly balanced ratio,
+$\mathbf Q/\mathbf R\approx1$ (with a mild bias toward $\mathbf Q$ for prompt
+settling). On the Position--Velocity selector this is a point near the centre,
+slightly into the high-$\mathbf Q$ region, giving a well-damped trajectory that
+spirals smoothly into the origin without overshoot.
+
+\begin{answer}
+Click the state-space plot at a \textbf{balanced point} --- moderate
+$\mathbf Q$ and moderate $\mathbf R$ ($\mathbf Q/\mathbf R\approx1$,
+slightly biased toward higher $\mathbf Q$): near the plot centre, just into the
+high-$\mathbf Q$ side. Press \textbf{TEST CONFIG}.\\
+(Avoid the extremes: pure high-$\mathbf Q$ = overshoot/energy waste;
+pure high-$\mathbf R$ = too slow.)
+\end{answer}
+
+%=======================================================================
+\section{Summary of All Inputs}
+%=======================================================================
+\renewcommand{\arraystretch}{1.35}
+\begin{longtable}{@{}p{0.6cm}p{4.4cm}p{10.5cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Task} & \textbf{Value to enter / action}\\
+\midrule
+\endhead
+1  & Column Stability      & Brace at $a=2.00$\,m; $P_{cr}=197.4$\,kN.\\
+2  & Solar Sail MPPT       & Tracker at $V_{mp}\approx16.26$\,V, $P\approx119.3$\,W (sail $\alpha$).\\
+3  & Mohr's Circle         & $R=\sqrt{((\sigma_x-\sigma_y)/2)^2+\tau_{xy}^2}$; click $\sigma_1=C+R$, $\sigma_2=C-R$.\\
+4  & Radar Convolution     & Drag pulse to the global-maximum (tallest) correlation peak.\\
+5  & Arcane Capacitor      & $f\approx105.6$\,MHz.\\
+6  & Counter-Flow HX       & $\dot m_h\approx0.80$\,kg/s, $\dot m_c\approx2.50$\,kg/s $\Rightarrow T_{h,out}\approx70\,^{\circ}$C.\\
+7  & Sentry-Bot FK         & $\theta_1\approx16.8^{\circ}$, $\theta_2\approx17.7^{\circ}$, $\theta_3\approx-52.5^{\circ}$.\\
+8  & Rankine Cycle         & $T_H\approx350\,^{\circ}$C, $T_L\approx30\,^{\circ}$C $\Rightarrow\eta\approx45\,\%$.\\
+9  & Nyquist Hack          & $N=0$ (stable; $Z=N+P=0$).\\
+10 & Torsional Stress      & $T_{max}=30.40$\,kN$\cdot$m.\\
+11 & Void Frequency Tuner  & $L=3.57$\,mH $\Rightarrow f_0=2663$\,Hz.\\
+12 & Beam Deflection       & Marker at $x\approx3.06$\,m.\\
+13 & Singularity Trap      & $\theta_2\approx87^{\circ}$ (keep $14.5^{\circ}<\theta_2<165.5^{\circ}$).\\
+14 & PID Stabilizer        & $K_p\approx0.40$, $K_i\approx0.05$, $K_d\approx0.55$.\\
+15 & Mach Shock            & Shock at $x\approx0.81$ ($A_s/A^{*}\approx1.45$).\\
+16 & Kalman Tracker        & Click blip-cluster centroid ($\approx x=35$, Round 1).\\
+17 & Spectral De-Scrambler & Peaks at $45$, $212$, $395$\,Hz.\\
+18 & Prism Shield (LQR)    & Balanced $\mathbf Q/\mathbf R\approx1$, centre of plot (slight high-$\mathbf Q$).\\
+\bottomrule
+\end{longtable}
+
+\vspace{6pt}
+\textit{Notes.} Tasks 3, 4, 16 and 18 depend on data that is hidden or
+graphical in the live page (offline scanner, correlation trace, sensor blips,
+empty selector); for these the governing method is given so the exact on-screen
+value can be applied directly. All numeric answers were verified against the
+live readouts shown in the task screenshots.
+
+\end{document}

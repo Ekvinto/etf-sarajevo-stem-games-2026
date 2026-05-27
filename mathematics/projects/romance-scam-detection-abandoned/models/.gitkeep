@@ -1,0 +1,5 @@
+# Trained models live here:
+#   classifier.joblib       -- the sklearn pipeline
+#   hmm_scam.pkl            -- CategoricalHMM fit on labeled scam data
+#   hmm_normal.pkl          -- CategoricalHMM fit on benign data
+# Created by src/train.py.

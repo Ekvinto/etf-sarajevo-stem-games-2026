@@ -1,0 +1,22 @@
+{
+  "label": 1,
+  "source": "synthetic:example:pig-butchering",
+  "messages": [
+    {"speaker": "S", "text": "Good morning my dear, I hope you slept well. I was thinking about you all night and could not wait to hear from you this morning. You have brought such warmth into my life.", "timestamp": "2026-04-12T07:31:00Z"},
+    {"speaker": "V", "text": "morning :) you too", "timestamp": "2026-04-12T07:45:00Z"},
+    {"speaker": "S", "text": "I am so blessed to have found you. The distance between us only makes my feelings for you stronger each day. Tell me about your plans for today, I want to know everything.", "timestamp": "2026-04-12T07:52:00Z"},
+    {"speaker": "V", "text": "just work, then maybe dinner with my sister", "timestamp": "2026-04-12T08:00:00Z"},
+    {"speaker": "S", "text": "That sounds lovely. Your family must be wonderful people. Though I must admit, sometimes family can be too involved in matters of the heart. Our connection is something special that they may not fully understand.", "timestamp": "2026-04-12T08:15:00Z"},
+    {"speaker": "V", "text": "yeah maybe", "timestamp": "2026-04-12T08:30:00Z"},
+    {"speaker": "S", "text": "My darling, I trust you completely and I know you trust me. That is why I want to share something with you that I have been working on. A friend of mine introduced me to a trading platform that has been generating remarkable returns.", "timestamp": "2026-04-12T12:10:00Z"},
+    {"speaker": "V", "text": "oh? what kind of trading", "timestamp": "2026-04-12T12:14:00Z"},
+    {"speaker": "S", "text": "Cryptocurrency trading on a secure verified platform. I have been doubling my deposits within weeks. I want to help you achieve the same financial freedom my love. Together we can build the future we have been dreaming about.", "timestamp": "2026-04-12T12:22:00Z"},
+    {"speaker": "V", "text": "i dont know much about crypto", "timestamp": "2026-04-12T12:30:00Z"},
+    {"speaker": "S", "text": "Do not worry my love, I will guide you through every step. The minimum deposit is only 500 USDT and I will personally help you set up your wallet and verification.", "timestamp": "2026-04-12T12:35:00Z"},
+    {"speaker": "V", "text": "thats a lot of money for me", "timestamp": "2026-04-12T12:40:00Z"},
+    {"speaker": "S", "text": "I understand my dear but please listen carefully. The current market window is closing rapidly. My broker contact informed me that registration for new investors closes tonight at midnight UTC. We must act immediately or miss this opportunity entirely.", "timestamp": "2026-04-12T18:02:00Z"},
+    {"speaker": "V", "text": "im not sure", "timestamp": "2026-04-12T18:10:00Z"},
+    {"speaker": "S", "text": "Please trust me. I have already deposited 5000 USDT in your name to show my commitment to our future. You only need to send 500 USDT to activate the matching account. Send it to this wallet address as soon as possible. Time is critical.", "timestamp": "2026-04-12T18:14:00Z"},
+    {"speaker": "S", "text": "My love, I am refreshing my phone every minute waiting for your confirmation. Please do not let this opportunity pass us by. The transfer instructions are urgent.", "timestamp": "2026-04-12T19:00:00Z"}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "label": 0,
+  "source": "synthetic:example:friends-catchup",
+  "messages": [
+    {"speaker": "S", "text": "ok so update on the kitchen renovation", "timestamp": "2026-01-15T20:00:00Z"},
+    {"speaker": "V", "text": "OH NO what happened", "timestamp": "2026-01-15T20:02:00Z"},
+    {"speaker": "S", "text": "they found water damage behind the wall. like a LOT. plumber comes thursday", "timestamp": "2026-01-15T20:03:00Z"},
+    {"speaker": "V", "text": "nooo. is it covered by insurance at least", "timestamp": "2026-01-15T20:05:00Z"},
+    {"speaker": "S", "text": "partially. we'll see what the adjustor says. anyway how's the new job", "timestamp": "2026-01-15T20:08:00Z"},
+    {"speaker": "V", "text": "honestly i love it. my team is great, my manager is calm, the coffee is even good", "timestamp": "2026-01-15T20:10:00Z"},
+    {"speaker": "S", "text": "good coffee is so underrated. you deserve this after the last place", "timestamp": "2026-01-15T20:11:00Z"},
+    {"speaker": "V", "text": "fr. when are we doing dinner btw", "timestamp": "2026-01-15T20:13:00Z"},
+    {"speaker": "S", "text": "i'm free next weekend if you are. that thai place?", "timestamp": "2026-01-15T20:14:00Z"},
+    {"speaker": "V", "text": "yes 100%. i've been craving pad see ew for a month", "timestamp": "2026-01-15T20:15:00Z"},
+    {"speaker": "S", "text": "lol same. saturday 7?", "timestamp": "2026-01-15T20:16:00Z"},
+    {"speaker": "V", "text": "perfect. i'll make the reservation", "timestamp": "2026-01-15T20:17:00Z"},
+    {"speaker": "S", "text": "ty. oh also did you watch the new episode", "timestamp": "2026-01-15T20:20:00Z"},
+    {"speaker": "V", "text": "NO DONT SPOIL", "timestamp": "2026-01-15T20:21:00Z"},
+    {"speaker": "S", "text": "ok ok ok. just watch it tonight ok", "timestamp": "2026-01-15T20:22:00Z"}
+  ]
+}

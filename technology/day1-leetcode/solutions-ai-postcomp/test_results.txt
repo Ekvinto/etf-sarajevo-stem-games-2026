@@ -1,0 +1,115 @@
+================================================================
+ Day 1 LeetCode  -  Solution Test Report
+ Generated: 2026-05-27 02:10:04
+================================================================
+
+### Find the Square
+  executable: C:\Users\adnan\Repositories\etf-sarajevo-stem-games-2026\technology\day1-leetcode\solutions-ai-postcomp\Find_the_Square.exe
+  sample_01       :    1 /   1   PASS
+  cluster_01      :    1 /   1   PASS
+  cluster_02      :    1 /   1   PASS
+  cluster_03      :    1 /   1   PASS
+  cluster_04      :    1 /   1   PASS
+  cluster_05      :    1 /   1   PASS
+  cluster_06      :    0 /   1   FAIL
+  cluster_07      :    1 /   1   PASS
+  cluster_08      :    1 /   1   PASS
+  cluster_09      :    1 /   1   PASS
+  cluster_10      :    0 /   1   FAIL
+  cluster_11      :    0 /   1   FAIL
+  cluster_12      :    0 /   1   FAIL
+  cluster_13      :    1 /   1   PASS
+  cluster_14      :    1 /   1   PASS
+  cluster_15      :    0 /   1   FAIL
+  cluster_16      :    1 /   1   PASS
+  cluster_17      :    0 /   1   FAIL
+  cluster_18      :    0 /   1   FAIL
+  cluster_19      :    1 /   1   PASS
+  cluster_20      :    1 /   1   PASS
+  cluster_21      :    1 /   1   PASS
+  cluster_22      :    1 /   1   PASS
+  cluster_23      :    1 /   1   PASS
+  cluster_24      :    1 /   1   PASS
+  cluster_25      :    1 /   1   PASS
+  cluster_26      :    1 /   1   PASS
+  cluster_27      :    0 /   1   FAIL
+  cluster_28      :    1 /   1   PASS
+  cluster_29      :    1 /   1   PASS
+  cluster_30      :    1 /   1   PASS
+  cluster_31      :    0 /   1   FAIL
+  cluster_32      :    0 /   1   FAIL
+  cluster_33      :    1 /   1   PASS
+  cluster_34      :    0 /   1   FAIL
+  cluster_35      :    1 /   1   PASS
+  cluster_36      :    1 /   1   PASS
+  cluster_37      :    1 /   1   PASS
+  cluster_38      :    1 /   1   PASS
+  cluster_39      :    0 /   1   FAIL
+  cluster_40      :    1 /   1   PASS
+  cluster_41      :    1 /   1   PASS
+  cluster_42      :    1 /   1   PASS
+  cluster_43      :    1 /   1   PASS
+  cluster_44      :    1 /   1   PASS
+  cluster_45      :    1 /   1   PASS
+  cluster_46      :    1 /   1   PASS
+  cluster_47      :    1 /   1   PASS
+  cluster_48      :    1 /   1   PASS
+  cluster_49      :    1 /   1   PASS
+  cluster_50      :    1 /   1   PASS
+  ------------------------------------------------------------
+  Problem total: 39/51 correct  (76.5%)   [wall time 30.58 s]
+
+### Gaussian Blur
+  executable: C:\Users\adnan\Repositories\etf-sarajevo-stem-games-2026\technology\day1-leetcode\solutions-ai-postcomp\Gaussian_Blur.exe
+  sample_01       :    1 /   1   PASS
+  cluster_01      :    5 /   5   PASS
+  cluster_02      :    8 /   8   PASS
+  cluster_03      :    5 /   5   PASS
+  cluster_04      :    5 /   5   PASS
+  cluster_05      :    7 /   7   PASS
+  cluster_06      :    6 /   6   PASS
+  ------------------------------------------------------------
+  Problem total: 37/37 correct  (100.0%)   [wall time 11.71 s]
+
+### Largest Triangle
+  executable: C:\Users\adnan\Repositories\etf-sarajevo-stem-games-2026\technology\day1-leetcode\solutions-ai-postcomp\Largest_Triangle.exe
+  sample_01       :    2 /   2   PASS
+  cluster_01      :   11 /  11   PASS
+  cluster_02      :    8 /   8   PASS
+  cluster_03      :    5 /   5   PASS
+  cluster_04      :   11 /  11   PASS
+  cluster_05      :    7 /   7   PASS
+  ------------------------------------------------------------
+  Problem total: 44/44 correct  (100.0%)   [wall time 24.01 s]
+
+### Undistortion
+  executable: C:\Users\adnan\Repositories\etf-sarajevo-stem-games-2026\technology\day1-leetcode\solutions-ai-postcomp\Undistortion.exe
+  sample_01       :    1 /   1   PASS
+  cluster_01      :    5 /   5   PASS
+  cluster_02      :    5 /   5   PASS
+  cluster_03      :    5 /   5   PASS
+  ------------------------------------------------------------
+  Problem total: 16/16 correct  (100.0%)   [wall time 3.86 s]
+
+================================================================
+ GRAND TOTAL: 136/148 outputs correct  (91.9%)
+ Incorrect  : 12
+================================================================
+
+Incorrect outputs (problem / cluster / testcase):
+  Find the Square / cluster_06 / testcase_01
+  Find the Square / cluster_10 / testcase_01
+  Find the Square / cluster_11 / testcase_01
+  Find the Square / cluster_12 / testcase_01
+  Find the Square / cluster_15 / testcase_01
+  Find the Square / cluster_17 / testcase_01
+  Find the Square / cluster_18 / testcase_01
+  Find the Square / cluster_27 / testcase_01
+  Find the Square / cluster_31 / testcase_01
+  Find the Square / cluster_32 / testcase_01
+  Find the Square / cluster_34 / testcase_01
+  Find the Square / cluster_39 / testcase_01
+
+Note: 'Find the Square' is a heuristic vision task with no exact
+algorithm - partial credit is expected and normal there. The other
+three problems are deterministic and should reach 100%.

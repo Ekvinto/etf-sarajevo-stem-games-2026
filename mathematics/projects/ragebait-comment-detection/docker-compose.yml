@@ -1,0 +1,39 @@
+# AI-Ragebait Detector — deployment for a Traefik-fronted server.
+#
+# This server already runs the core-infrastructure stack (Traefik + Let's
+# Encrypt). Traefik discovers this service via the labels below — no Caddy,
+# no nginx, no editing config files on the host.
+#
+# Deploy:  docker compose up -d --build
+#
+# Traefik routes  https://stem.steleks.ba/mathematics-2026/*  to this app,
+# strips the /mathematics-2026 prefix, and serves a TLS cert automatically.
+
+networks:
+  traefik-public:
+    external: true
+
+services:
+  web:
+    build: .
+    image: ragebait-detector:latest
+    container_name: ragebait-web
+    restart: unless-stopped
+    networks:
+      - traefik-public
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request,sys; sys.exit(0) if urllib.request.urlopen('http://localhost:8000/api/health').status==200 else sys.exit(1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 180s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-public"
+      - "traefik.http.routers.ragebait.rule=Host(`stem.steleks.ba`) && PathPrefix(`/mathematics-2026`)"
+      - "traefik.http.routers.ragebait.entrypoints=websecure"
+      - "traefik.http.routers.ragebait.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.ragebait.middlewares=ragebait-stripprefix"
+      - "traefik.http.middlewares.ragebait-stripprefix.stripprefix.prefixes=/mathematics-2026"
+      - "traefik.http.services.ragebait.loadbalancer.server.port=8000"

@@ -1,0 +1,41 @@
+# Additional outgroup-marker terms. One per line, lowercased.
+# Built-ins in src/features/rb_outgroup.py cover the most common political,
+# generational, and institutional markers (liberals, conservatives, boomers,
+# elites, etc.). We deliberately exclude slurs and demographic-targeting terms
+# both for ethical reasons and because they are already well-handled by
+# existing hate-speech classifiers.
+neoliberals
+neocons
+fundamentalists
+extremists
+mainstream
+oligarchs
+oligarchy
+plutocrats
+technocrats
+bureaucrats
+ideologues
+activists
+mob
+mobs
+populists
+nationalists
+globalists
+loyalists
+partisans
+zealots
+hypocrites
+hypocrite
+warmongers
+deniers
+truthers
+believers
+naysayers
+apologists
+sympathizers
+fanboys
+fanbois
+nimbys
+boomerang
+karens
+chuds

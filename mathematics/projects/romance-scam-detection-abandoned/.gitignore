@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+*.egg-info/
+
+# Models / data (too large for git)
+models/*.joblib
+models/*.pkl
+data/raw/
+data/*.jsonl
+!data/scam_templates.jsonl
+data/*.csv
+
+# IDE
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.key
+
+# Outputs
+images/*.png
+images/*.pdf
+!images/.gitkeep

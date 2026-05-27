@@ -1,0 +1,29 @@
+# Core ML / NLP
+transformers>=4.40.0
+torch>=2.0.0
+sentence-transformers>=2.6.0
+scikit-learn==1.6.1  # pinned: the version used to train models/classifiers.joblib
+
+# Tokenizer dependencies (XLM-RoBERTa, T5, etc.)
+sentencepiece>=0.2.0
+protobuf>=4.21.0
+
+# Numerical / data
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+
+# NLP utilities
+nltk>=3.8
+
+# Hugging Face datasets (HC3, civil_comments, etc.)
+datasets>=2.18.0,<3.0
+
+# Synthetic data generation
+anthropic>=0.25.0
+
+# Persistence / CLI / utilities
+joblib>=1.3.0
+tqdm>=4.66.0
+python-dotenv>=1.0.0

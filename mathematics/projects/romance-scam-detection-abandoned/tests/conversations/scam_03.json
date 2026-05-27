@@ -1,0 +1,22 @@
+{
+  "label": 1,
+  "source": "synthetic:example:widower",
+  "messages": [
+    {"speaker": "S", "text": "Hello, I came across your profile and felt compelled to write. I am a recently widowed engineer working on contract in West Africa.", "timestamp": "2026-02-10T08:00:00Z"},
+    {"speaker": "V", "text": "hello, sorry for your loss", "timestamp": "2026-02-10T08:30:00Z"},
+    {"speaker": "S", "text": "Thank you for your kindness, it means more than you know. Life has been difficult since my wife passed but conversations like this give me hope. May I ask about you?", "timestamp": "2026-02-10T08:35:00Z"},
+    {"speaker": "V", "text": "im a nurse, divorced, two kids", "timestamp": "2026-02-10T09:00:00Z"},
+    {"speaker": "S", "text": "A nurse and a mother, the most noble combination. Your children are blessed to have you. I have one daughter who lives with her aunt while I am working overseas.", "timestamp": "2026-02-10T09:10:00Z"},
+    {"speaker": "V", "text": "how old is she?", "timestamp": "2026-02-10T09:12:00Z"},
+    {"speaker": "S", "text": "She just turned twelve. She is the light of my life along with our growing connection. I find myself smiling at my phone whenever I see your name.", "timestamp": "2026-02-10T09:20:00Z"},
+    {"speaker": "V", "text": "you are sweet", "timestamp": "2026-02-10T09:22:00Z"},
+    {"speaker": "S", "text": "My darling, I have terrible news. My daughter has been hospitalized with a sudden illness and the local doctors say she needs urgent surgery. The hospital requires 3500 dollars upfront before they will operate.", "timestamp": "2026-02-22T17:00:00Z"},
+    {"speaker": "V", "text": "oh no I'm so sorry, what about your wife's family?", "timestamp": "2026-02-22T17:10:00Z"},
+    {"speaker": "S", "text": "They have already contributed everything they have. My funds are tied up in my contract escrow until next month. You are the only person I can turn to in this hour of need my love.", "timestamp": "2026-02-22T17:15:00Z"},
+    {"speaker": "V", "text": "i dont have that kind of money on hand", "timestamp": "2026-02-22T17:30:00Z"},
+    {"speaker": "S", "text": "Even a partial amount would help. The surgery is scheduled for tomorrow morning at 8 AM their time. Please please my dear, if you can send anything via MoneyGram to the hospital administrator I will repay you tenfold when my escrow releases.", "timestamp": "2026-02-22T18:00:00Z"},
+    {"speaker": "V", "text": "let me think about it", "timestamp": "2026-02-22T18:05:00Z"},
+    {"speaker": "S", "text": "There is no time to think my love. My daughter's life hangs in the balance. The hospital will not begin without the deposit. I am begging you, please act now. The MoneyGram details are ready to send to you immediately.", "timestamp": "2026-02-22T19:30:00Z"},
+    {"speaker": "S", "text": "Please respond. Every hour matters. Please.", "timestamp": "2026-02-22T22:00:00Z"}
+  ]
+}

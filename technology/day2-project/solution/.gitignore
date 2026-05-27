@@ -1,0 +1,16 @@
+# Day 2 solution — things that should NOT go in the repository.
+
+# Input images. NOT stored in the repo — copy them from
+# ../task-description/TestImages/ before running (see README.md, section 1).
+data/
+
+# Pipeline output: COLMAP working directories (colmap_*), intermediate
+# sparse clouds, etc. All regenerable by re-running the scripts.
+output/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# NOTE: final_output/ is intentionally NOT ignored — those are the
+# final submitted point clouds and must stay in the repository.

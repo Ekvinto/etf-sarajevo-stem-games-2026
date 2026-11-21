@@ -14,13 +14,15 @@ ENV HF_HOME=/app/.hf-cache \
 
 WORKDIR /app
 
-# 1) CPU-only PyTorch first (avoids pulling ~5 GB of CUDA libraries).
+# 1) CPU-only PyTorch first (avoids pulling ~5 GB of CUDA libraries). Its own dependencies come in step 2,
+#    from PyPI at the versions in constraints-web.txt.
 RUN pip install --upgrade pip && \
-    pip install torch --index-url https://download.pytorch.org/whl/cpu
+    pip install --no-deps "torch==2.12.0" --index-url https://download.pytorch.org/whl/cpu
 
-# 2) Remaining web/inference dependencies. torch is already satisfied.
-COPY requirements-web.txt .
-RUN pip install -r requirements-web.txt
+# 2) Remaining web/inference dependencies, at the exact versions of constraints-web.txt (the image of May 2026,
+#    with Starlette 1.0.1 since November 2026). torch is already satisfied.
+COPY requirements-web.txt constraints-web.txt ./
+RUN pip install -r requirements-web.txt -c constraints-web.txt
 
 # 3) Pre-download the HF models into the image cache (cached build layer).
 COPY webapp/prefetch_models.py webapp/prefetch_models.py

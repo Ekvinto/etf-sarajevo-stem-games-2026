@@ -20,7 +20,7 @@ RUN pip install --upgrade pip && \
     pip install --no-deps "torch==2.12.0" --index-url https://download.pytorch.org/whl/cpu
 
 # 2) Remaining web/inference dependencies, at the exact versions of constraints-web.txt (the image of May 2026,
-#    with Starlette 1.0.1 since November 2026). torch is already satisfied.
+#    with Starlette 1.10.0 since November 2026). torch is already satisfied.
 COPY requirements-web.txt constraints-web.txt ./
 RUN pip install -r requirements-web.txt -c constraints-web.txt
 
